@@ -1,8 +1,8 @@
-FROM ubuntu:latest
+FROM continuumio/anaconda3
 
-RUN apt-get update && apt-get install -y \
-	curl
-RUN curl https://repo.continuum.io/archive/Anaconda3-4.3.0-Linux-x86_64.sh | /bin/bash
-# RUN sudo bash Anaconda3-4.3.0-Linux-x86_64.sh
+EXPOSE 8888
 
-CMD /bin/bash
+RUN /bin/bash -c "/opt/conda/bin/conda install jupyter -y --quiet && mkdir /opt/notebooks"
+COPY jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py
+
+CMD /opt/conda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser
