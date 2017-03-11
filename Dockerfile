@@ -3,7 +3,7 @@ FROM continuumio/anaconda3
 EXPOSE 8888
 
 RUN /bin/bash -c "/opt/conda/bin/conda install jupyter -y --quiet && mkdir /opt/notebooks"
-COPY jupyter_notebook_config.py /root/.jupyter/jupyter_notebook_config.py
+COPY .jupyter /root/.jupyter
 
 RUN pip install --upgrade jupyterthemes
 RUN jt -t chesterish -f roboto -fs 12
