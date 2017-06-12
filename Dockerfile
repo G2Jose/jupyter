@@ -10,4 +10,4 @@ RUN jt -t chesterish -f roboto -fs 12
 
 RUN conda env create -f /root/.jupyter/environments/machine-learning.yml
 
-CMD /opt/conda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser
+CMD source activate machine-learning && /opt/conda/bin/jupyter notebook --notebook-dir=/opt/notebooks --ip='*' --port=8888 --no-browser
